@@ -8,17 +8,20 @@
       <el-button type="info" @click="logout" class="logoutBtn" size="small">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside :width="isCollapse ? '60px' : '200px'">
         <!-- 只保持一个子菜单展开unique-opened -->
         <el-menu
-          default-active="1-1"
           class="el-menu-vertical-demo"
           background-color="#333744"
           text-color="#fff"
           active-text-color="#409eff"
           unique-opened
           router
+          :collapse="isCollapse"
+          :collapse-transition="false"
+          :default-active="activePath"
         >
+          <div class="toggle_button" @click="toggleCollapse">|||</div>
           <!-- 一级菜单 index 是需要填写的字符串，但是获取的id是数字，所以需要转化为字符串-->
           <el-submenu :index="item.id + ''" v-for="item in menuList" :key="item.id">
             <!-- 一级菜单模板区域 -->
@@ -27,7 +30,12 @@
               <span>{{item.authName}}</span>
             </template>
             <!-- 二级菜单 -->
-            <el-menu-item :index="'/' + item2.path" v-for="item2 in item.children" :key="item2.id">
+            <el-menu-item
+              :index="'/' + item2.path"
+              v-for="item2 in item.children"
+              :key="item2.id"
+              @click="savePath('/' + item2.path)"
+            >
               <i class="el-icon-menu"></i>
               {{item2.authName}}
             </el-menu-item>
@@ -53,11 +61,15 @@ export default {
         101: 'iconfont icon-shangpin',
         102: 'iconfont icon-danju',
         145: 'iconfont icon-baobiao'
-      }
+      },
+      // 控制侧边栏缩放
+      isCollapse: false,
+      activePath: ''
     }
   },
   created() {
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     async logout() {
@@ -87,6 +99,13 @@ export default {
       }
       this.menuList = res.data
       console.log(this.menuList)
+    },
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse
+    },
+    savePath(actpath) {
+      window.sessionStorage.setItem('activePath', actpath)
+      this.activePath = actpath
     }
   }
 }
@@ -124,5 +143,15 @@ export default {
 }
 .el-main {
   background-color: #eaedf1;
+}
+.toggle_button {
+  height: 24px;
+  background-color: #4a5064;
+  font-size: 10px;
+  line-height: 24px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 </style>
