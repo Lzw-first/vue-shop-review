@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
-import './assets/css/global.css'
+import './assets/css/public.css'
 import axios from 'axios'
+// 导入外部字体库
+import './assets/fonts/iconfont.css'
 
 Vue.config.productionTip = false
 

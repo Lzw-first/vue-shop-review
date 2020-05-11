@@ -1,5 +1,5 @@
 <template>
-  <h2>welcome</h2>
+  <div>用户列表页面</div>
 </template>
 
 <script>
@@ -11,7 +11,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-h2 {
-  text-align: center;
-}
 </style>
