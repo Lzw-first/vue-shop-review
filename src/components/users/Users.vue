@@ -11,8 +11,8 @@
       <!-- 搜索框及添加用户 -->
       <el-row :gutter="20">
         <el-col :span="8">
-          <el-input placeholder="请输入内容" v-model="queryInfo.query">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable>
+            <el-button slot="append" icon="el-icon-search" @click="searchSomeUser"></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
@@ -21,7 +21,7 @@
       </el-row>
       <!-- 用户列表 在谷歌浏览器中会出现边线对不齐的情况-->
       <el-table :data="userList" border stripe>
-        <el-table-column type="index"></el-table-column>
+        <el-table-column type="index" align="center"></el-table-column>
         <el-table-column prop="username" label="姓名"></el-table-column>
         <el-table-column prop="email" label="邮箱"></el-table-column>
         <el-table-column prop="mobile" label="电话"></el-table-column>
@@ -94,7 +94,7 @@
     </el-dialog>
 
     <!-- 修改用户对话框 -->
-    <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%">
+    <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%" @close="editDialogClose">
       <span>
         <el-form :model="editUserForm" :rules="UserRules" ref="editUserFormRef" label-width="70px">
           <el-form-item label="用户名">
@@ -224,6 +224,10 @@ export default {
       this.userList = res.data.users
       this.total = res.data.total
     },
+    // 查询用户
+    searchSomeUser() {
+      this.getUserList()
+    },
     // 改变用户状态
     async changeUserState(user) {
       const { data: res } = await this.$http.put(`users/${user.id}/state/${user.mg_state}`)
@@ -277,20 +281,24 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       })
-        .then(async () => {
-          // 发送请求修改对应用户
-          const { data: res } = await this.$http.put('users/' + this.userId, {
-            email: this.editUserForm.email,
-            mobile: this.editUserForm.mobile
-          })
-          if (res.meta.status !== 200) {
-            return this.$message.error('修改失败')
-          }
-          this.getUserList()
-          this.editDialogVisible = false
-          return this.$message({
-            type: 'success',
-            message: '修改成功!'
+        .then(() => {
+          // 先验证变单信息
+          this.$refs.editUserFormRef.validate(async valid => {
+            if (!valid) return this.$message.error('请填写正确的格式再重新确认')
+            // 发送请求修改对应用户
+            const { data: res } = await this.$http.put('users/' + this.userId, {
+              email: this.editUserForm.email,
+              mobile: this.editUserForm.mobile
+            })
+            if (res.meta.status !== 200) {
+              return this.$message.error('修改失败')
+            }
+            this.getUserList()
+            this.editDialogVisible = false
+            return this.$message({
+              type: 'success',
+              message: '修改成功!'
+            })
           })
         })
         .catch(() => {
@@ -299,6 +307,9 @@ export default {
             message: '已取消修改'
           })
         })
+    },
+    editDialogClose() {
+      this.$refs.editUserFormRef.resetFields()
     },
     // 删除用户
     deleteUser(id) {
