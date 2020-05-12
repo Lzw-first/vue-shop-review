@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 const Login = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Login.vue')
 const Home = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Home.vue')
 const Welcome = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Welcome.vue')
+const Rights = () => import(/* webpackChunkName: "Power" */ '../components/power/rights.vue')
 
 const Users = () => import(/* webpackChunkName: "Users" */ '../components/users/Users.vue')
 
@@ -24,7 +25,8 @@ const routes = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: Welcome },
-      { path: '/users', component: Users }
+      { path: '/users', component: Users },
+      { path: '/rights', component: Rights }
     ]
   }
 ]

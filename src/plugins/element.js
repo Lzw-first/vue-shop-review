@@ -26,7 +26,8 @@ import {
   Dialog,
   Tooltip,
   Select,
-  Option
+  Option,
+  Tag
 } from 'element-ui'
 
 Vue.use(Button)
@@ -54,6 +55,7 @@ Vue.use(Dialog)
 Vue.use(Tooltip)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Tag)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
