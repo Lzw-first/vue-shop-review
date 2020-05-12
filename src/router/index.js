@@ -5,6 +5,7 @@ const Login = () => import(/* webpackChunkName: "login_home_welcome" */ '../comp
 const Home = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Home.vue')
 const Welcome = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Welcome.vue')
 const Rights = () => import(/* webpackChunkName: "Power" */ '../components/power/rights.vue')
+const Roles = () => import(/* webpackChunkName: "Users" */ '../components/power/roles.vue')
 
 const Users = () => import(/* webpackChunkName: "Users" */ '../components/users/Users.vue')
 
@@ -26,7 +27,8 @@ const routes = [
     children: [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: Users },
-      { path: '/rights', component: Rights }
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles }
     ]
   }
 ]
