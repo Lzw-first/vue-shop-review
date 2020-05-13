@@ -6,6 +6,10 @@ import './assets/css/public.css'
 import axios from 'axios'
 // 导入外部字体库
 import './assets/fonts/iconfont.css'
+// 导入vue-table-with-tree-grid
+import TreeTable from 'vue-table-with-tree-grid'
+// 暴露为全局组件
+Vue.component('tree-table', TreeTable)
 
 Vue.config.productionTip = false
 
