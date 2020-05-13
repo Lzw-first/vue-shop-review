@@ -4,18 +4,19 @@ import VueRouter from 'vue-router'
 const Login = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Login.vue')
 const Home = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Home.vue')
 const Welcome = () => import(/* webpackChunkName: "login_home_welcome" */ '../components/Welcome.vue')
+
 const Rights = () => import(/* webpackChunkName: "Power" */ '../components/power/rights.vue')
 const Roles = () => import(/* webpackChunkName: "Users" */ '../components/power/roles.vue')
 
 const Users = () => import(/* webpackChunkName: "Users" */ '../components/users/Users.vue')
 
+const Goods = () => import(/* webpackChunkName: "good" */ '../components/good/Goods.vue')
+const Params = () => import(/* webpackChunkName: "good" */ '../components/good/Params.vue')
+
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    redirect: '/login'
-  },
+  { path: '/', redirect: '/login' },
   {
     path: '/login',
     component: Login
@@ -28,7 +29,9 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles }
+      { path: '/roles', component: Roles },
+      { path: '/goods', component: Goods },
+      { path: '/params', component: Params }
     ]
   }
 ]

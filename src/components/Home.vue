@@ -93,12 +93,10 @@ export default {
     // 获取导航菜单列表
     async getMenuList() {
       const { data: res } = await this.$http.get('menus')
-      console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取权限列表失败')
       }
       this.menuList = res.data
-      console.log(this.menuList)
     },
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
