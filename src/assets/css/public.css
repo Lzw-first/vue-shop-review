@@ -20,3 +20,20 @@ body,
 .el-table {
   margin: 15px 0;
 }
+
+.el-steps {
+  margin: 20px;
+}
+
+.el-step__title {
+  font-size: 13px;
+}
+
+.el-checkbox {
+  margin-right: 10px;
+}
+
+/* 根据F12 查到 具体是 ql-editor 这个类控制着编辑区域的宽度*/
+.ql-editor {
+  min-height: 300px;
+}

@@ -13,6 +13,7 @@ const Users = () => import(/* webpackChunkName: "Users" */ '../components/users/
 const Goods = () => import(/* webpackChunkName: "good" */ '../components/good/Goods.vue')
 const Params = () => import(/* webpackChunkName: "good" */ '../components/good/Params.vue')
 const Categories = () => import(/* webpackChunkName: "good" */ '../components/good/Categories.vue')
+const Add = () => import(/* webpackChunkName: "good" */ '../components/good/Add.vue')
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,8 @@ const routes = [
       { path: '/roles', component: Roles },
       { path: '/goods', component: Goods },
       { path: '/params', component: Params },
-      { path: '/categories', component: Categories }
+      { path: '/categories', component: Categories },
+      { path: '/goods/add', component: Add }
     ]
   }
 ]

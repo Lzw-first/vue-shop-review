@@ -8,8 +8,17 @@ import axios from 'axios'
 import './assets/fonts/iconfont.css'
 // 导入vue-table-with-tree-grid
 import TreeTable from 'vue-table-with-tree-grid'
+// 导入富文本编辑器 vue-quill-editor
+import VueQuillEditor from 'vue-quill-editor'
+// 导入富文本编辑器的css文件
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
 // 暴露为全局组件
 Vue.component('tree-table', TreeTable)
+// 全局注册富文本编辑器
+Vue.use(VueQuillEditor)
 
 Vue.config.productionTip = false
 
