@@ -15,6 +15,8 @@ const Params = () => import(/* webpackChunkName: "good" */ '../components/good/P
 const Categories = () => import(/* webpackChunkName: "good" */ '../components/good/Categories.vue')
 const Add = () => import(/* webpackChunkName: "good" */ '../components/good/Add.vue')
 
+const Order = () => import(/* webpackChunkName: "order" */ '../components/order/Order.vue')
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,7 +37,8 @@ const routes = [
       { path: '/goods', component: Goods },
       { path: '/params', component: Params },
       { path: '/categories', component: Categories },
-      { path: '/goods/add', component: Add }
+      { path: '/goods/add', component: Add },
+      { path: '/orders', component: Order }
     ]
   }
 ]
